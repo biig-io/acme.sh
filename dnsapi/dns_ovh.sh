@@ -246,7 +246,7 @@ _ovh_authentication() {
 #returns
 # _sub_domain=_acme-challenge.www
 # _domain=domain.com
-_get_root() {
+_get_root_old() {
   domain=$1
   i=2
   p=1
@@ -271,6 +271,16 @@ _get_root() {
   done
   return 1
 }
+
+_get_root() {
+
+domain=$1
+
+_domain=$(expr match "$domain" '.*\.\(.*\..*\)')
+_sub_domain=$(expr match "$domain" '\(.*\)\..*\..*')
+
+}
+
 
 _ovh_timestamp() {
   _H1=""
